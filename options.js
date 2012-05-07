@@ -1,15 +1,15 @@
 save_show_notification = function() {
     var show_notification_value = document.getElementById("show_notification").checked;
-    localStorage["show_notification"] = show_notification_value ? 1 : 0;
+    localStorage["show_notification"] = show_notification_value ? "true" : "false";
 }
 
 setup_show_notification = function() {
     var show_notification_value = localStorage["show_notification"];
     if (!show_notification_value) {
-        show_notification_value = 0;
+        show_notification_value = "false";
     }
     var show_notification = document.getElementById("show_notification");
-    show_notification.checked = show_notification_value == 0 ? false : true;
+    show_notification.checked = show_notification_value == "true" ? true : false;
     show_notification.onclick = save_show_notification;
 }
 

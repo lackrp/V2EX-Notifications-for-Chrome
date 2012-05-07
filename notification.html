@@ -2,21 +2,19 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" href="notification.css" />
-        <script type="text/javascript">
-            function ready() {
-                var nid = window.location.search.substring(4);
-                if (localStorage[nid]) {
-                    document.getElementById("main").innerHTML = localStorage[nid];
-                    localStorage.removeItem(nid);
-                } else {
-                    window.close();
-                }
-            }
-        </script>
         <base href="http://www.v2ex.com" />
         <base target = "_blank" /> 
     </head>
-    <body onload="javascript: ready()">
+    <body>
         <div id="main"></div>
+        <script type="text/javascript">
+            var nid = window.location.search.substring(4);
+            if (localStorage[nid]) {
+                document.getElementById("main").innerHTML = localStorage[nid];
+                localStorage.removeItem(nid);
+            } else {
+                window.close();
+            }
+        </script>
     </body>
 </html>

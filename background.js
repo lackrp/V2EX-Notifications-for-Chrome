@@ -35,7 +35,7 @@ show_notifications = function(n) {
             var main = html.indexOf('<div id="Main">');
             var begin = html.indexOf('<div class="box">', main);
             for (var i = 0; i < n; i++) {
-                begin = html.indexOf('<div class="cell"><table', begin);
+                begin = html.indexOf('<div class="cell"><table', begin + 1);
                 var end = html.indexOf('</table></div>', begin) + 14;
                 var nid = new Date().getTime() + "_" + Math.random();
                 var text = html.substring(begin, end);
@@ -87,7 +87,7 @@ update_loop = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             n = extract_unread_number_from_html(xhr.responseText);
             update_unread_number(n);
-            if (localStorage["show_notification"]) {
+            if (localStorage["show_notification"] == "true") {
                 notify(n);
             }
         }
@@ -101,5 +101,5 @@ update_loop = function() {
     window.setTimeout(update_loop, time_interval);
 }
 
-last = -1;
+last = 0;
 update_loop();
