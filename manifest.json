@@ -1,0 +1,23 @@
+{
+    "name": "V2EX Notifications",
+    "version": "1.0.1",
+    "description": "View notifications of V2EX.com.",
+    "icons": {
+        "16": "v2ex.ico",
+        "48": "v2ex.ico",
+        "128": "v2ex.ico"
+    },
+    "background": {
+        "scripts": [ "background.js" ]
+    },
+    "browser_action": {
+        "default_icon": "v2ex.ico",
+        "default_popup": "popup.html",
+        "default_title": "V2EX Notifications"
+    },
+    "options_page": "options.html",
+    "permissions": [
+        "notifications",
+        "http://www.v2ex.com/"
+    ]
+}

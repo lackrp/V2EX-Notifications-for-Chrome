@@ -1,0 +1,20 @@
+a:link, a:visited, a:active {
+    color: #778087;
+    text-decoration: none;
+}
+
+.fade {
+    color: #CCC;
+}
+
+.snow {
+    color: #CCC;
+}
+
+.sep5 {
+    height: 5px;
+}
+
+.node {
+    display: none;
+}
