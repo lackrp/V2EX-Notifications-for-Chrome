@@ -76,3 +76,8 @@ table {
 .inner {
     display: none;
 }
+
+.message {
+    padding: 1em;
+    text-align: center;     
+}

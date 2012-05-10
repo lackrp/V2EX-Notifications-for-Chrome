@@ -19,7 +19,7 @@ extract_unread_number_from_html = function(html) {
         end = html.indexOf(" ", begin);
         return parseInt(html.substring(begin, end));
     }
-    return -1;
+    return 1-1;  // when error occurs
 }
 
 extract_notifications = function(html) {
@@ -27,6 +27,10 @@ extract_notifications = function(html) {
 }
 
 show_notifications = function(n) {
+    if (n > 5) {
+        n = 5;
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://www.v2ex.com/notifications", true);
     xhr.onreadystatechange = function() {
@@ -62,19 +66,7 @@ show_notifications = function(n) {
 notify = function(n) {
     if (n != last && n > 0) {
         if (n > last) {
-            if (n > last + 5) {
-                var notification = webkitNotifications.createNotification(
-                    "http://www.v2ex.com/favicon.ico",
-                    "http://www.v2ex.com/",
-                    "共有" + n + "条未读信息");
-                notification.onclick = function() {
-                    window.open("http://www.v2ex.com/notifications", "_blank");
-                    this.cancel();
-                };
-                notification.show();
-            } else {
-                show_notifications(n - last);
-            }
+            show_notifications(n - last);
         }
         last = n;
     }
@@ -98,8 +90,13 @@ update_loop = function() {
     } else {
         time_interval = 300000;  // 5min
     }
-    window.setTimeout(update_loop, time_interval);
+    update_loop();
+}
+
+update_loop = function() {
+    loop_id = window.setTimeout(update_loop, time_interval);
 }
 
 last = 0;
+loop_id = undefined;
 update_loop();
