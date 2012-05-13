@@ -1,39 +1,33 @@
-save_show_notification = function() {
-    var show_notification_value = document.getElementById("show_notification").checked;
-    localStorage["show_notification"] = show_notification_value ? "true" : "false";
-}
-
-setup_show_notification = function() {
-    var show_notification_value = localStorage["show_notification"];
-    if (!show_notification_value) {
-        show_notification_value = "false";
-    }
-    var show_notification = document.getElementById("show_notification");
-    show_notification.checked = show_notification_value == "true" ? true : false;
-    show_notification.onclick = save_show_notification;
-}
-
-save_time_interval = function() {
-    var time_interval_value = document.getElementById("time_interval").value;
-    localStorage["time_interval"] = time_interval_value;
-}
-
-setup_time_interval = function() {
-    var time_interval_value = localStorage["time_interval"];
-    if (!time_interval_value) {
-        time_interval_value = "300000";  // 5min
-    }
-    var time_interval = document.getElementById("time_interval");
-    for (var i = 0; i < time_interval.options.length; i++) {
-        if (time_interval.options[i].value == time_interval_value) {
-            time_interval.options[i].selected = true;
+var setSelectorValue = function(id, value) {
+    var selector = document.getElementById(id);
+    for (var i = 0; i < selector.options.length; i++) {
+        var option = selector.options[i];
+        if (option.value == value) {
+            option.selected = true;
             break;
-        }  
+        }
     }
-    time_interval.onchange = save_time_interval;
 }
 
-setup = function() {
-    setup_show_notification();
-    setup_time_interval();
+var setupShowNotification = function() {
+    var element = document.getElementById("show_notification");
+    element.checked = getShowNotification(); 
+    element.onclick = function() {
+        saveShowNotification(this.checked);
+    };
 }
+
+var setupUpdateFrequency = function() {
+    setSelectorValue("update_frequency", getUpdateFrequency().toString());
+    document.getElementById("update_frequency").onchange = function() {
+        saveUpdateFrequency(parseInt(this.value));
+        chrome.extension.getBackgroundPage().updateLoop();
+    };
+}
+
+var setup = function() {
+    setupShowNotification();
+    setupUpdateFrequency();
+}
+
+setup();

@@ -1,21 +1,15 @@
+<!doctype html>
 <html>
     <head>
         <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="base.css" />
         <link rel="stylesheet" type="text/css" href="notification.css" />
+        <script src="base.js" type="text/javascript"></script>
+        <script src="notification.js" type="text/javascript"></script>
         <base href="http://www.v2ex.com" />
         <base target = "_blank" /> 
     </head>
-    <body>
+    <body onload="onBodyLoad();">
         <div id="main"></div>
-        <script type="text/javascript">
-            var nid = window.location.search.substring(4);
-            if (localStorage[nid]) {
-                document.getElementById("main").innerHTML = localStorage[nid];
-                localStorage.removeItem(nid);
-            } else {
-                window.close();
-            }
-            window.setTimeout(window.close, 15000);
-        </script>
     </body>
 </html>

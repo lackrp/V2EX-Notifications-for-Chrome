@@ -3,6 +3,10 @@ body {
     background-color: #EDE5D7;
 }
 
+.hidden {
+    display: none;
+}
+
 #main {
     width: 670px;
     margin: 50px auto 30px auto;

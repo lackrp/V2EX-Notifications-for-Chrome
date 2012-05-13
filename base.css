@@ -1,0 +1,61 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow-x: none;
+    overflow-y: auto;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.notification {
+    background-color: white;
+    color: #222;
+    min-height: 40px;
+}
+
+.fade strong {
+    color: #777;
+}
+
+.image {
+    float: left;
+    width: 40px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.head {
+    display: inline;
+}
+
+.head a:link, .head a:visited {
+    color: #15C;
+}
+
+.time {
+    display: inline-block;
+    color: #093;
+    margin-left: 1em;
+}
+
+.body {
+    color: #333;
+    margin: 5px;
+    display: block;
+}
+
+.body a:link, .body a:visited {
+    color: #777;
+}
+
+.payload {
+    background-color: #F1F1F1;
+    display: inline-block;
+    padding: 5px 10px; 
+}
