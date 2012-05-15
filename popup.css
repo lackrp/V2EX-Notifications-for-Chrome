@@ -1,11 +1,41 @@
 body {
-    width: 600px;
-    background-color: #F1F1F1;
+    width: 410px;
+    background-color: #E1E1E1;
     font-size: 14px;
 }
 
+#tabs {
+    background-color: #2D2D2D;
+}
+
+#tabs ul {
+    margin: 0px;
+}
+
+#tabs li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    color: #BBB;
+    cursor: pointer;
+}
+
+#tabs li.selected {
+    background-color: #E1E1E1;
+    color: #DD4B39;
+}
+
+#tabs li a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+#tabs li.selected a:hover {
+    color: #DD4B39;
+}
+
 .notification {
-    margin: 5px;
+    margin: 8px;
     padding: 6px;
     border-radius: 5px;
 }
@@ -14,19 +44,23 @@ body {
     margin-left: 40px;
 }
 
-#see_all {
+.see_all {
     text-align: center;
     margin: 8px;
 }
 
-#see_all a {
-    color: #15C;
+.see_all a {
+    background-color: #DD4B39;
+    border-radius: 3px;
+    color: white;
+    padding: 0.5em 1em;
 }
 
-#message {
+.message {
     background-color: white;
     height: 100px;
     text-align: center;
+    margin-top: 5px;
 }
 
 .loading {
@@ -35,4 +69,46 @@ body {
     display: inline;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+.header, .inner {
+    display: none;
+}
+
+.cell {
+    background-color: white;    
+    margin: 8px;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.item_title a, .item_hot_topic_title a {
+    color: #15C;
+}
+
+#topics .node {
+    color: #093;
+}
+
+#topics .fade strong a {
+    color: #777;
+}
+
+#topics a.count_livid {
+    padding: 0.5em;
+    color: white;
+    border-radius: 3px;
+}
+
+#topics a.count_livid:link {
+    background-color: #DD4B39;
+}
+
+#topics a.count_livid:visited {
+    background-color: #CCC; 
+}
+
+#topics a.count_livid:hover {
+    opacity: 0.6; 
+    text-decoration: none;
 }

@@ -1,13 +1,14 @@
 var V2EX = {
-    HOME_PAGE: "http://www.v2ex.com/",
-    NOTIFICATIONS: "http://www.v2ex.com/notifications",
-    SIGN_IN: "http://www.v2ex.com/signin" 
+    HOME_PAGE: 'http://www.v2ex.com/',
+    NOTIFICATIONS: 'http://www.v2ex.com/notifications',
+    MY_TOPICS: 'http://www.v2ex.com/my/topics',
+    SIGN_IN: 'http://www.v2ex.com/signin' 
 }
 
 var formatString = function(template, data) {
     var ret = template;
     for (var name in data) {
-        ret = ret.replace("\{" + name + "\}", data[name]);
+        ret = ret.replace('\{' + name + '\}', data[name]);
     }
     return ret;
 }
@@ -69,16 +70,16 @@ var COLOR = {
 }
 
 var updateUnreadNumber = function(number) {
-    if (number >= 100) {
-        setBadgeText("99+");
+    if (number >= 10) {
         setBadgeColor(COLOR.BLUE);
+        setBadgeText('9+');
     } else if (number == 0) {
-        setBadgeText("");
+        setBadgeText('');
     } else if (number < 0) {
-        setBadgeText("!");
         setBadgeColor(COLOR.RED);
+        setBadgeText('!');
     } else {
-        setBadgeText(number.toString());
         setBadgeColor(COLOR.GREEN);
+        setBadgeText(number.toString());
     }
 }

@@ -10,13 +10,43 @@
         <base target="_blank" />
     </head>
     <body onload="onBodyLoad();">
+        <div id="tabs">
+            <ul>
+                <li id="notification_tab" name="notification" class="selected">
+                    <a>提醒</a>
+                </li>
+                <li id="topic_tab" name="topic">
+                    <a>主题收藏</a>
+                </li>
+                <li id="hot_tab" name="hot">
+                    <a>本日热议主题</a>
+                </li>
+            </ul>
+        </div>
         <div id="main">
-            <div id="message">
-                <div class="loading">载入中……</div>
+            <div id="notification_page">
+                <div id="notification_message" class="message">
+                    <div class="loading">载入中……</div>
+                </div>
+                <div id="notifications"></div>
+                <div id="notification_see_all" class="see_all" style="display: none">
+                    <a href="/notifications">查看全部提醒</a>
+                </div>
             </div>
-            <div id="notifications"></div>
-            <div id="see_all" style="display: none">
-                <a href="/notifications">查看全部提醒</a>
+            <div id="topic_page" style="display: none">
+                <div id="topic_message" class="message">
+                    <div class="loading">载入中……</div>
+                </div>
+                <div id="topics"></div>
+                <div id="topic_see_all" class="see_all" style="display: none">
+                    <a href="/my/topics">查看全部主题收藏</a>
+                </div>
+            </div>
+            <div id="hot_page" style="display: none">
+                <div id="hot_message" class="message">
+                    <div class="loading">载入中……</div>
+                </div>
+                <div id="hots"></div>
             </div>
         </div>
     </body>
