@@ -112,3 +112,25 @@ body {
     opacity: 0.6; 
     text-decoration: none;
 }
+
+.signin {
+    text-align: center;
+    vertical-align: middle;
+    padding: 30px;
+}
+
+.signin span {
+    display: inline-block;
+    color: #333;
+    background-color: white;
+    padding: 1em 2em;
+    margin: 1em;
+    border-radius: 5px;
+}
+
+.signin a {
+    display: inline-block;
+    padding: 0.5em 2em;
+    background-color: #DD4B39;
+    color: white;
+}

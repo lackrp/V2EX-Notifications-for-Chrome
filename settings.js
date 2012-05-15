@@ -3,5 +3,5 @@ var getShowNotification = function() {
 }
 
 var getUpdateFrequency = function() {
-    return 300000;  // 5 min
+    return 60000;  // 1 min
 }

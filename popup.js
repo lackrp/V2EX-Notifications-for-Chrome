@@ -35,8 +35,10 @@ var getNotifications = function() {
 
             var html = xhr.responseText;
             if (html.indexOf('<title>V2EX › 登入</title>') > 0) {
-                //TODO: window.open(V2EX.SIGN_IN);
+                document.getElementById('notification_signin').style.display = '';
             } else {
+                updateUnreadNumber(0);
+
                 var container = document.getElementById('notifications');
                 container.innerHTML = '';
                 document.getElementById('notification_see_all').style.display = '';
@@ -67,7 +69,7 @@ var getTopics = function() {
 
             var html = xhr.responseText;
             if (html.indexOf('<title>V2EX › 登入</title>') > 0) {
-                //TODO: window.open(V2EX.SIGN_IN);
+                document.getElementById('topic_signin').style.display = '';
             } else {
                 var begin = html.indexOf('<div id="Main">');
                 var end = html.indexOf('<div class="c">', begin);
