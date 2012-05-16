@@ -13,14 +13,18 @@
         <div id="tabs">
             <ul>
                 <li id="notification_tab" name="notification" class="selected">
-                    <a>提醒</a>
+                    <a>提醒系统</a>
                 </li>
                 <li id="topic_tab" name="topic">
                     <a>主题收藏</a>
                 </li>
-                <li id="hot_tab" name="hot">
-                    <a>本日热议主题</a>
+                <li id="hot_tab" name="hot" style="display: none">
+                    <a>热议主题</a>
                 </li>
+                <li id="recent_tab" name="recent">
+                    <a>最新更新</a>
+                </li>
+            </ul>
             </ul>
         </div>
         <div id="main">
@@ -55,6 +59,12 @@
                     <div class="loading">载入中……</div>
                 </div>
                 <div id="hots"></div>
+            </div>
+            <div id="recent_page" style="display: none">
+                <div id="recent_message" class="message">
+                    <div class="loading">载入中……</div>
+                </div>
+                <div id="recents"></div>
             </div>
         </div>
     </body>

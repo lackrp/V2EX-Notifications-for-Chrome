@@ -2,10 +2,11 @@ var onBodyLoad = function() {
     setupTabs();
     getNotifications();
     getTopics();
-    getHots();
+//    getHots();
+    getRecents();
 };
 
-var TAB_NAMES = [ 'notification', 'topic', 'hot' ];
+var TAB_NAMES = [ 'notification', 'topic', /*'hot',*/ 'recent' ];
 var setupTabs = function() {
     for (var i = 0; i < TAB_NAMES.length; ++i) {
         document.getElementById(TAB_NAMES[i] + '_tab').onclick = function() {
@@ -96,6 +97,22 @@ var getHots = function() {
                 html.substring(begin, end)
                     .replace('class="inner ', 'class="cell ')
                     .replace('class="cell"', 'class="header"');
+        }
+    };
+    xhr.send();
+};
+
+var getRecents = function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', V2EX.HOME_PAGE, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('recent_message').style.display = 'none';
+
+            var html = xhr.responseText;
+            var begin = html.indexOf('<div class="cell item"');
+            var end = html.indexOf('<div class="inner">', begin);
+            document.getElementById('recents').innerHTML = html.substring(begin, end);
         }
     };
     xhr.send();

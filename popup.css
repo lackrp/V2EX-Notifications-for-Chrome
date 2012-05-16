@@ -3,7 +3,6 @@ body {
     background-color: #E1E1E1;
     font-size: 14px;
     overflow-x: hidden;
-    padding-right: 15px;
 }
 
 #tabs {
@@ -34,6 +33,10 @@ body {
 
 #tabs li.selected a:hover {
     color: #DD4B39;
+}
+
+#main {
+    padding-right: 10px;
 }
 
 .notification {
@@ -89,29 +92,29 @@ body {
     color: #15C;
 }
 
-#topics .node {
+.node {
     color: #093;
 }
 
-#topics .fade strong a {
+.fade strong a {
     color: #777;
 }
 
-#topics a.count_livid {
+a.count_livid {
     padding: 0.5em;
     color: white;
     border-radius: 3px;
 }
 
-#topics a.count_livid:link {
+a.count_livid:link {
     background-color: #DD4B39;
 }
 
-#topics a.count_livid:visited {
+a.count_livid:visited {
     background-color: #CCC; 
 }
 
-#topics a.count_livid:hover {
+a.count_livid:hover {
     opacity: 0.6; 
     text-decoration: none;
 }
