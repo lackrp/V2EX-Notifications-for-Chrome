@@ -1,6 +1,6 @@
 {
     "name": "V2EX Notifications",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "View notifications of V2EX.com.",
     "icons": {
         "16": "v2ex.ico",
@@ -19,6 +19,7 @@
         "default_popup": "popup.html",
         "default_title": "V2EX Notifications"
     },
+    "options_page": "donate.html",
     "permissions": [
         "notifications",
         "http://www.v2ex.com/"

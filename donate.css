@@ -1,0 +1,54 @@
+body, html {
+    height: 100%;
+}
+
+body {
+    font-family: Arial;
+    background-color: white;
+}
+
+#outer {  
+    height: 100%;
+    width: 100%; 
+    display: table;
+}
+
+#middle {  
+    top: 50%;
+    vertical-align: middle;
+    display: table-cell;
+}  
+
+#inner { 
+    text-align: center;
+}
+
+#alipay {
+    width: 300px;
+    margin: auto;
+}
+
+#alipay div {
+    color: #222;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 1em;
+}
+
+#alipay img {
+    position: relative;
+    top: 15px;
+    left: 15px;
+}
+
+#alipay a {
+    padding: 1em 2em;
+    border-radius: 3px;
+    background-color: #FB7823;
+    color: white; 
+    text-decoration: none;
+}
+
+#alipay a:hover {
+    text-decoration: underline;
+}
