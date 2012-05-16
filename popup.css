@@ -2,6 +2,8 @@ body {
     width: 410px;
     background-color: #E1E1E1;
     font-size: 14px;
+    overflow-x: hidden;
+    padding-right: 15px;
 }
 
 #tabs {
