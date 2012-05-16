@@ -47,6 +47,7 @@ body {
 .see_all {
     text-align: center;
     margin: 8px;
+    padding: 8px;
 }
 
 .see_all a {
@@ -133,4 +134,5 @@ body {
     padding: 0.5em 2em;
     background-color: #DD4B39;
     color: white;
+    border-radius: 3px;
 }
