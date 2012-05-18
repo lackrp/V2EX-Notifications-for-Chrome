@@ -1,4 +1,7 @@
 var onBodyLoad = function() {
+    addGoogleAnalyticsScript();
+    trackPageview();
+
     setupTabs();
     getNotifications();
     getTopics();
@@ -11,6 +14,8 @@ var setupTabs = function() {
     for (var i = 0; i < TAB_NAMES.length; ++i) {
         document.getElementById(TAB_NAMES[i] + '_tab').onclick = function() {
             var tabName = this.getAttribute('name');
+            trackSimpleEvent("popup.html", tabName);
+
             for (var j = 0; j < TAB_NAMES.length; ++j) {
                 var jname = TAB_NAMES[j]; 
                 var tab = document.getElementById(jname + '_tab');
