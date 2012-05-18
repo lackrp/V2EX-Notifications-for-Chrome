@@ -1,6 +1,6 @@
 {
     "name": "V2EX Notifications",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "View notifications of V2EX.com.",
     "icons": {
         "16": "v2ex.ico",
