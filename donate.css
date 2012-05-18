@@ -24,21 +24,18 @@ body {
 }
 
 #alipay {
-    width: 300px;
-    margin: auto;
+    width: 230px;
+    margin: -80px auto 0 auto;
+    line-height: 2.5;
+}
+#alipay p{
+	text-align: left;
+	margin: 0 0 50px 0;
 }
 
-#alipay div {
-    color: #222;
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 1em;
-}
 
 #alipay img {
-    position: relative;
-    top: 15px;
-    left: 15px;
+    float: right;
 }
 
 #alipay a {
