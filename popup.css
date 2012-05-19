@@ -128,21 +128,21 @@ body {
     color: #777;
 }
 
-a.count_livid {
+a.count_livid, a.count_orange {
     padding: 0.5em;
     color: white;
     border-radius: 3px;
 }
 
-a.count_livid:link {
+a.count_livid:link, a.count_orange:link {
     background-color: #DD4B39;
 }
 
-a.count_livid:visited {
+a.count_livid:visited, a.count_orange:visited {
     background-color: #CCC; 
 }
 
-a.count_livid:hover {
+a.count_livid:hover, a.count_orange:hover {
     opacity: 0.6; 
     text-decoration: none;
 }
