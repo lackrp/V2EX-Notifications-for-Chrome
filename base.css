@@ -47,7 +47,7 @@ a:hover {
 
 .body {
     color: #333;
-    margin: 5px;
+    margin: 5px 0px;
     display: block;
 }
 
@@ -59,4 +59,68 @@ a:hover {
     background-color: #F1F1F1;
     display: inline-block;
     padding: 5px 10px; 
+}
+
+.reply {
+    float: right;
+    width: 30px;
+    height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.reply_area {
+    padding: 5px 15px 5px 10px; 
+}
+
+.reply_area textarea {
+    width: 100%;
+    height: 5em;
+}
+
+.reply_area .buttons {
+    text-align: right;
+}
+
+.reply_area .buttons a {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    border-radius: 3px;
+    margin: 3px 8px;
+    cursor: pointer;
+}
+
+.reply_area .buttons a:hover {
+    text-decoration: none;
+}
+
+a.reply_button, a.reply_button:link {
+    background-color: #4D90FE;
+    color: white;
+    border: 1px solid #3079ED;
+}
+
+a.reply_button:hover {
+    background-color: #4787ED;
+}
+
+a.cancel_button, a.cancel_button:link {
+    background-color: #F1F1F1;
+    color: #444;
+    border: 1px solid #CCC;
+}
+
+a.cancel_button:hover {
+    background-color: white;
+}
+
+.sent_success {
+    margin: auto 1em;
+    color: #3D9400;
+}
+
+.sent_failed {
+    margin: auto 1em;
+    color: #DD4B39;
 }
