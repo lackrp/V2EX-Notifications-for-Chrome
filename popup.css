@@ -6,6 +6,9 @@ body {
 
 #tabs {
     background-color: #2D2D2D;
+    position: fixed;
+    width: 100%;
+    top: 0px;
 }
 
 #tabs ul {
@@ -34,8 +37,34 @@ body {
     color: #DD4B39;
 }
 
-#main {
+#tabs div {
+    height: 8px;
+    background-color: #E1E1E1;
+}
 
+#main {
+    padding-top: 3em;
+}
+
+.toast {
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    top: 3em;
+}
+
+.toast div {
+    padding: 5px;
+}
+
+.toast .success {
+    background-color: #9EC97F;
+    color: #3D9400;
+}
+
+.toast .failed {
+    background-color: #EEA59C;
+    color: #DD4B39;
 }
 
 .notification {
@@ -65,7 +94,7 @@ body {
     background-color: white;
     height: 100px;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 .loading {

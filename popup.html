@@ -5,7 +5,8 @@
         <link rel="stylesheet" type="text/css" href="base.css" />
         <link rel="stylesheet" type="text/css" href="popup.css" />
         <script src="google_analytics.js" type="text/javascript"></script>
-        <script src="base.js" type="text/javascript"></script>
+        <script src="common.js" type="text/javascript"></script>
+        <script src="badge.js" type="text/javascript"></script>
         <script src="popup.js" type="text/javascript"></script>
         <base href="http://www.v2ex.com" />
         <base target="_blank" />
@@ -26,46 +27,50 @@
                     <a>最新更新</a>
                 </li>
             </ul>
-            </ul>
+            <div></div>
         </div>
         <div id="main">
             <div id="notification_page">
-                <div id="notification_message" class="message">
+                <div class="message">
                     <div class="loading">载入中……</div>
                 </div>
-                <div id="notifications"></div>
-                <div id="notification_see_all" class="see_all" style="display: none">
+                <div class="toast">
+                    <div class="success" style="display: none">发送成功</div>
+                    <div class="failed" style="display: none">发送失败</div>
+                </div>
+                <div class="container"></div>
+                <div class="see_all" style="display: none">
                     <a href="/notifications">查看全部提醒</a>
                 </div>
-                <div id="notification_signin" class="signin" style="display: none">
+                <div class="signin" style="display: none">
                     <span>还没有登陆V2EX，请点击下面按钮登入</span>
                     <a href="/signin">登入</a>
                 </div>
             </div>
             <div id="topic_page" style="display: none">
-                <div id="topic_message" class="message">
+                <div class="message">
                     <div class="loading">载入中……</div>
                 </div>
-                <div id="topics"></div>
-                <div id="topic_see_all" class="see_all" style="display: none">
+                <div class="container"></div>
+                <div class="see_all" style="display: none">
                     <a href="/my/topics">查看全部主题收藏</a>
                 </div>
-                <div id="topic_signin" class="signin" style="display: none">
+                <div class="signin" style="display: none">
                     <span>还没有登陆V2EX，请点击下面按钮登入</span>
                     <a href="/signin">登入</a>
                 </div>
             </div>
             <div id="hot_page" style="display: none">
-                <div id="hot_message" class="message">
+                <div class="message">
                     <div class="loading">载入中……</div>
                 </div>
-                <div id="hots"></div>
+                <div class="container"></div>
             </div>
             <div id="recent_page" style="display: none">
-                <div id="recent_message" class="message">
+                <div class="message">
                     <div class="loading">载入中……</div>
                 </div>
-                <div id="recents"></div>
+                <div class="container"></div>
             </div>
         </div>
     </body>

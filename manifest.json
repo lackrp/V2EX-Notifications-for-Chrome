@@ -9,8 +9,8 @@
     },
     "background": {
         "scripts": [
-            "base.js",
             "settings.js",
+            "badge.js",
             "background.js"
         ]
     },
