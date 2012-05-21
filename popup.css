@@ -55,6 +55,8 @@ body {
 
 .toast div {
     padding: 5px;
+    opacity: 0.9;
+    font-weight: bold;
 }
 
 .toast .success {

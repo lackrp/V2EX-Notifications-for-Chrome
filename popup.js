@@ -211,12 +211,12 @@ var clickReply = function(element) {
     if (toastTimeout != null) {
         window.clearTimeout(toatTimeout);
     }
-    if (reponse) {
+    if (response) {
         show(success);
         hide(failed);
     } else {
-        show(success);
-        hide(failed);
+        hide(success);
+        show(failed);
     }
     toastTimeout = window.setTimeout(hideToast, 3000);
 };
