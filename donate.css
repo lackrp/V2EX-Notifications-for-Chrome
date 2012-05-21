@@ -7,19 +7,19 @@ body {
     background-color: white;
 }
 
-#outer {  
+#outer {
     height: 100%;
-    width: 100%; 
+    width: 100%;
     display: table;
 }
 
-#middle {  
+#middle {
     top: 50%;
     vertical-align: middle;
     display: table-cell;
-}  
+}
 
-#inner { 
+#inner {
     text-align: center;
 }
 
@@ -28,9 +28,10 @@ body {
     margin: -80px auto 0 auto;
     line-height: 2.5;
 }
-#alipay p{
-	text-align: left;
-	margin: 0 0 50px 0;
+
+#alipay p {
+  text-align: left;
+  margin: 0 0 50px 0;
 }
 
 
@@ -42,7 +43,7 @@ body {
     padding: 1em 2em;
     border-radius: 3px;
     background-color: #FB7823;
-    color: white; 
+    color: white;
     text-decoration: none;
 }
 

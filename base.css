@@ -2,7 +2,7 @@ body {
     font-family: Arial;
     margin: 0px;
     padding: 0px;
-    overflow-x: visible;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -58,7 +58,7 @@ a:hover {
 .payload {
     background-color: #F1F1F1;
     display: inline-block;
-    padding: 5px 10px; 
+    padding: 5px 10px;
 }
 
 .reply {
@@ -71,7 +71,7 @@ a:hover {
 }
 
 .reply_area {
-    padding: 5px 15px 5px 10px; 
+    padding: 5px 15px 5px 10px;
 }
 
 .reply_area textarea {
@@ -123,4 +123,8 @@ a.cancel_button:hover {
 .sent_failed {
     margin: auto 1em;
     color: #DD4B39;
+}
+
+.container {
+  padding-right: 8px;
 }

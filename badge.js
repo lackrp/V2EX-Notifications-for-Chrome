@@ -2,7 +2,7 @@ var V2EX = {
     HOME_PAGE: 'http://www.v2ex.com/',
     NOTIFICATIONS: 'http://www.v2ex.com/notifications',
     MY_TOPICS: 'http://www.v2ex.com/my/topics',
-    SIGN_IN: 'http://www.v2ex.com/signin' 
+    SIGN_IN: 'http://www.v2ex.com/signin'
 };
 
 var COLOR = {
