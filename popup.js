@@ -52,8 +52,9 @@ var getNotifications = function() {
 
                 var begin = html.indexOf('<div id="Main">');
                 begin = html.indexOf('<div class="box">', begin);
+                var last = html.indexOf('<div class="inner', begin);
                 for (begin = html.indexOf('<div class="cell', begin);
-                        begin >= 0;
+                        begin >= 0 && begin < last;
                         begin = html.indexOf('<div class="cell', begin + 1)) {
                     var end = html.indexOf('\n', begin);
                     var notification = parseNotificationFromHtml(
