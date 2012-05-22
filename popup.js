@@ -1,10 +1,12 @@
 var toastTimeout = null;
+var isLoadingNotifications = false;
 
 var onBodyLoad = function() {
     addGoogleAnalyticsScript();
     trackPageview();
 
     setupTabs();
+
     getNotifications();
     getTopics();
 //    getHots();
@@ -31,38 +33,48 @@ var setupTabs = function() {
                 }
             }
         }
+        getElementByClass(document.getElementById(TAB_NAMES[i] + '_page'),
+                         'container').innerHTML =
+                localStorage[TAB_NAMES[i] + '_innerHTML'] || '';
     }
 };
 
 var getNotifications = function() {
+    isLoadingNotifications = true;
     GET(V2EX.NOTIFICATIONS, function(xhr) {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4) {
             var page = document.getElementById('notification_page');
             hide(getElementByClass(page, 'message'));
-
-            var html = xhr.responseText;
-            if (html.indexOf('<title>V2EX › 登入</title>') > 0) {
-                show(getElementByClass(page, 'signin'));
-            } else {
-                updateUnreadNumber(0);
-
+            var DIV_CELL = '<div class="cell';
+            if (xhr.status == 200) {
                 var container = getElementByClass(page, 'container');
-                container.innerHTML = '';
-                show(getElementByClass(page, 'see_all'));
 
-                var begin = html.indexOf('<div id="Main">');
-                begin = html.indexOf('<div class="box">', begin);
-                var last = html.indexOf('<div class="inner', begin);
-                for (begin = html.indexOf('<div class="cell', begin);
-                        begin >= 0 && begin < last;
-                        begin = html.indexOf('<div class="cell', begin + 1)) {
-                    var end = html.indexOf('\n', begin);
-                    var notification = parseNotificationFromHtml(
-                            html.substring(begin, end));
-                    container.innerHTML +=
-                            generateNotificationHtml(notification);
+                var html = xhr.responseText;
+                if (html.indexOf('<title>V2EX › 登入</title>') > 0) {
+                    container.innerHTML = '';
+                    show(getElementByClass(page, 'signin'));
+                } else {
+                    updateUnreadNumber(0);
+
+                    container.innerHTML = '';
+                    show(getElementByClass(page, 'see_all'));
+
+                    var begin = html.indexOf('<div id="Main">');
+                    begin = html.indexOf('<div class="box">', begin);
+                    var last = html.indexOf('<div class="inner', begin);
+                    for (begin = html.indexOf(DIV_CELL, begin);
+                            begin >= 0 && begin < last;
+                            begin = html.indexOf(DIV_CELL, begin + 1)) {
+                        var end = html.indexOf('\n', begin);
+                        var notification = parseNotificationFromHtml(
+                                html.substring(begin, end));
+                        container.innerHTML +=
+                                generateNotificationHtml(notification);
+                    }
                 }
+                localStorage['notification_innerHTML'] = container.innerHTML;
             }
+            isLoadingNotifications = false;
         }
     });
 };
@@ -72,17 +84,19 @@ var getTopics = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var page = document.getElementById('topic_page');
             hide(getElementByClass(page, 'message'));
+            var container = getElementByClass(page, 'container');
 
             var html = xhr.responseText;
             if (html.indexOf('<title>V2EX › 登入</title>') > 0) {
+                container.innerHTML = '';
                 show(getElementByClass(page, 'signin'));
             } else {
                 var begin = html.indexOf('<div id="Main">');
                 var end = html.indexOf('<div class="c">', begin);
-                getElementByClass(page, 'container').innerHTML =
-                        html.substring(begin, end);
+                container.innerHTML = html.substring(begin, end);
                 show(getElementByClass(page, 'see_all'));
             }
+            localStorage['topic_innerHTML'] = container.innerHTML;
         }
     });
 };
@@ -96,10 +110,12 @@ var getHots = function() {
             var html = xhr.responseText;
             var begin = html.indexOf('<div class="box" id="TopicsHot">');
             var end = html.indexOf('<div class="sep20">', begin);
-            getElementByClass(page, 'container').innerHTML =
-                html.substring(begin, end)
+            var container = getElementByClass(page, 'container');
+            container.innerHTML = html.substring(begin, end)
                     .replace('class="inner ', 'class="cell ')
                     .replace('class="cell"', 'class="header"');
+
+            localStorage['hot_innerHTML'] = container.innerHTML;
         }
     });
 };
@@ -113,8 +129,10 @@ var getRecents = function() {
             var html = xhr.responseText;
             var begin = html.indexOf('<div class="cell item"');
             var end = html.indexOf('<div class="inner">', begin);
-            getElementByClass(page, 'container').innerHTML =
-                html.substring(begin, end);
+            var container = getElementByClass(page, 'container');
+            container.innerHTML = html.substring(begin, end);
+
+            localStorage['recent_innerHTML'] = container.innerHTML;
         }
     });
 };
@@ -190,6 +208,9 @@ var moveCursorToEnd = function(textarea) {
 };
 
 var showReplyArea = function(element) {
+    if (isLoadingNotifications) {
+        return;
+    }
     var notification = element.parentElement.parentElement;
     show(getElementByClass(notification, 'reply_area'));
     hide(getElementByClass(notification, 'reply_icon'));

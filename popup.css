@@ -93,18 +93,15 @@ body {
 }
 
 .message {
-    background-color: white;
-    height: 100px;
+    position: fixed;
+    top: 3em;
     text-align: center;
-    margin-top: 8px;
+    width: 100%;
 }
 
 .loading {
     background-color: #F9EDBE;
     padding: 0.5em 2em;
-    display: inline;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
 }
 
 .header, .inner {
