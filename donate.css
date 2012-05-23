@@ -23,10 +23,30 @@ body {
     text-align: center;
 }
 
-#alipay {
-    width: 230px;
+#main{
+    width: 320px;
     margin: -80px auto 0 auto;
     line-height: 2.5;
+    text-align: center;
+}
+
+#title {
+    text-align: center; 
+    margin-top: -10em;
+    margin-bottom: 5em;
+    border-bottom: 2px solid #093;
+}
+
+#title span {
+    display: inline-block;
+    color: #3D9400;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+#alipay {
+    width: 230px;
+    margin: auto;
 }
 
 #alipay p {
@@ -35,18 +55,6 @@ body {
 }
 
 
-#alipay img {
+#alipay p img {
     float: right;
-}
-
-#alipay a {
-    padding: 1em 2em;
-    border-radius: 3px;
-    background-color: #FB7823;
-    color: white;
-    text-decoration: none;
-}
-
-#alipay a:hover {
-    text-decoration: underline;
 }
