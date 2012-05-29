@@ -65,9 +65,9 @@ var getNotifications = function() {
                     for (begin = html.indexOf(DIV_CELL, begin);
                             begin >= 0 && begin < last;
                             begin = html.indexOf(DIV_CELL, begin + 1)) {
-                        var end = html.indexOf('\n', begin);
+                        var end = html.indexOf('</table></div>\n', begin);
                         var notification = parseNotificationFromHtml(
-                                html.substring(begin, end));
+                                html.substring(begin, end) + '</table></div>');
                         container.innerHTML +=
                                 generateNotificationHtml(notification);
                     }
