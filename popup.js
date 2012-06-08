@@ -8,12 +8,13 @@ var onBodyLoad = function() {
     setupTabs();
 
     getNotifications();
+    getFollowing();
     getTopics();
 //    getHots();
     getRecents();
 };
 
-var TAB_NAMES = ['notification', 'topic', /*'hot',*/ 'recent'];
+var TAB_NAMES = ['notification', 'following', 'topic', /*'hot',*/ 'recent'];
 var setupTabs = function() {
     for (var i = 0; i < TAB_NAMES.length; ++i) {
         document.getElementById(TAB_NAMES[i] + '_tab').onclick = function() {
@@ -75,6 +76,28 @@ var getNotifications = function() {
                 localStorage['notification_innerHTML'] = container.innerHTML;
             }
             isLoadingNotifications = false;
+        }
+    });
+};
+
+var getFollowing = function() {
+    GET(V2EX.MY_FOLLOWING, function(xhr) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var page = document.getElementById('following_page');
+            hide(getElementByClass(page, 'message'));
+            var container = getElementByClass(page, 'container');
+
+            var html = xhr.responseText;
+            if (html.indexOf('<title>V2EX › 登入</title>') > 0) {
+                container.innerHTML = '';
+                show(getElementByClass(page, 'signin'));
+            } else {
+                var begin = html.indexOf('<div id="Main">');
+                var end = html.indexOf('<div class="c">', begin);
+                container.innerHTML = html.substring(begin, end);
+                show(getElementByClass(page, 'see_all'));
+            }
+            localStorage['following_innerHTML'] = container.innerHTML;
         }
     });
 };
