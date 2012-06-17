@@ -57,14 +57,17 @@ var selectTab = function(tabName) {
 
 var setTabStatus = function(tabName, statusName, statusValue) {
     var stat = tabStatus[tabName];
+    stat[statusName] = statusValue;
+
+    if (tabName == 'notification') {
+        return;
+    }
 
     if (statusName == 'loaded' && statusValue) {
         var oldUrls = JSON.parse(localStorage[tabName + '_urls'] || '[]');
         var newUrls = extractUrls(localStorage[tabName + '_innerHTML'] || '');
         setTabBadge(tabName, getArrayDiff(newUrls, oldUrls));
     }
-
-    stat[statusName] = statusValue;
 
     if (stat['loaded'] && stat['selected'] && !stat['read']) {
         stat['read'] = true;
@@ -345,8 +348,8 @@ var setTabBadge = function(tabName, number) {
         hide(tabBadge);
     } else {
         show(tabBadge);
-        if (number >= 100) {
-            tabBadge.innerHTML = '99+';
+        if (number >= 10) {
+            tabBadge.innerHTML = '9+';
         } else {
             tabBadge.innerHTML = number.toString();
         }
