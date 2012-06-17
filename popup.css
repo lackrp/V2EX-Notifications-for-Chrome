@@ -1,5 +1,5 @@
 body {
-    width: 485px;
+    width: 555px;
     background-color: #E1E1E1;
     font-size: 14px;
 }
@@ -35,6 +35,16 @@ body {
 
 #tabs li.selected a:hover {
     color: #DD4B39;
+}
+
+#tabs li span {
+    vertical-align: top;
+    text-align: center;
+    font-size: 11px;
+    background-color: #DD4B39;
+    color: white;
+    padding: 2px 3px 1px 2px;
+    margin-left: -2px;
 }
 
 #tabs div {

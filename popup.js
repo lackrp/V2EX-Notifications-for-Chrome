@@ -1,11 +1,15 @@
 var toastTimeout = null;
 var isLoadingNotifications = false;
+var tabStatus = {};
+
+var TAB_NAMES = ['notification', 'following', 'topic', /*'hot',*/ 'recent'];
 
 var onBodyLoad = function() {
     addGoogleAnalyticsScript();
     trackPageview();
 
     setupTabs();
+    selectTab(TAB_NAMES[0]);
 
     getNotifications();
     getFollowing();
@@ -14,29 +18,61 @@ var onBodyLoad = function() {
     getRecents();
 };
 
-var TAB_NAMES = ['notification', 'following', 'topic', /*'hot',*/ 'recent'];
 var setupTabs = function() {
     for (var i = 0; i < TAB_NAMES.length; ++i) {
+        tabStatus[TAB_NAMES[i]] = {
+            loaded: false,
+            selected: false,
+            read: false,
+        };
+
         document.getElementById(TAB_NAMES[i] + '_tab').onclick = function() {
             var tabName = this.getAttribute('name');
-            trackSimpleEvent('popup.html', tabName);
-
-            for (var j = 0; j < TAB_NAMES.length; ++j) {
-                var jname = TAB_NAMES[j];
-                var tab = document.getElementById(jname + '_tab');
-                var page = document.getElementById(jname + '_page');
-                if (tabName == jname) {
-                    tab.className = 'selected';
-                    show(page);
-                } else {
-                    tab.className = '';
-                    hide(page);
-                }
-            }
+            selectTab(tabName);
         }
         getElementByClass(document.getElementById(TAB_NAMES[i] + '_page'),
                          'container').innerHTML =
                 localStorage[TAB_NAMES[i] + '_innerHTML'] || '';
+    }
+};
+
+var selectTab = function(tabName) {
+    trackSimpleEvent('popup.html', tabName);
+
+    for (var j = 0; j < TAB_NAMES.length; ++j) {
+        var jname = TAB_NAMES[j];
+        var tab = document.getElementById(jname + '_tab');
+        var page = document.getElementById(jname + '_page');
+        if (tabName == jname) {
+            tab.className = 'selected';
+            show(page);
+            setTabStatus(tabName, 'selected', true);
+        } else {
+            tab.className = '';
+            hide(page);
+            setTabStatus(jname, 'selected', false);
+        }
+    }
+};
+
+var setTabStatus = function(tabName, statusName, statusValue) {
+    var stat = tabStatus[tabName];
+
+    if (statusName == 'loaded' && statusValue) {
+        var oldUrls = JSON.parse(localStorage[tabName + '_urls'] || '[]');
+        var newUrls = extractUrls(localStorage[tabName + '_innerHTML'] || '');
+        setTabBadge(tabName, getArrayDiff(newUrls, oldUrls));
+    }
+
+    stat[statusName] = statusValue;
+
+    if (stat['loaded'] && stat['selected'] && !stat['read']) {
+        stat['read'] = true;
+
+        var newUrls = extractUrls(localStorage[tabName + '_innerHTML'] || '');
+        if (newUrls) {
+            localStorage[tabName + '_urls'] = JSON.stringify(newUrls);
+        }
     }
 };
 
@@ -74,6 +110,7 @@ var getNotifications = function() {
                     }
                 }
                 localStorage['notification_innerHTML'] = container.innerHTML;
+                setTabStatus('notification', 'loaded', container.innerHTML != '');
             }
             isLoadingNotifications = false;
         }
@@ -98,6 +135,7 @@ var getFollowing = function() {
                 show(getElementByClass(page, 'see_all'));
             }
             localStorage['following_innerHTML'] = container.innerHTML;
+            setTabStatus('following', 'loaded', container.innerHTML != '');
         }
     });
 };
@@ -120,6 +158,7 @@ var getTopics = function() {
                 show(getElementByClass(page, 'see_all'));
             }
             localStorage['topic_innerHTML'] = container.innerHTML;
+            setTabStatus('topic', 'loaded', container.innerHTML != '');
         }
     });
 };
@@ -139,6 +178,7 @@ var getHots = function() {
                     .replace('class="cell"', 'class="header"');
 
             localStorage['hot_innerHTML'] = container.innerHTML;
+            setTabStatus('hot', 'loaded', container.innerHTML != '');
         }
     });
 };
@@ -156,6 +196,7 @@ var getRecents = function() {
             container.innerHTML = html.substring(begin, end);
 
             localStorage['recent_innerHTML'] = container.innerHTML;
+            setTabStatus('recent', 'loaded', container.innerHTML != '');
         }
     });
 };
@@ -282,4 +323,51 @@ var clickCancel = function(element) {
 
 var sendReply = function(postUrl, replyText) {
     return POST(postUrl, 'content=' + encodeURIComponent(replyText), null);
+};
+
+var extractUrls = function(html) {
+    var ret = new Array();
+    
+    var TITLE_BEGIN = '<span class="item_title">'
+    for (var begin = html.indexOf(TITLE_BEGIN);
+         begin >= 0;
+         begin = html.indexOf(TITLE_BEGIN, begin + 1)) {
+       begin = html.indexOf('/', begin);
+       ret.push(html.substring(begin, html.indexOf('"', begin))); 
+    }
+
+    return ret;
+};
+
+var setTabBadge = function(tabName, number) {
+    var tabBadge = document.getElementById(tabName + '_badge');
+    if (number <= 0) {
+        hide(tabBadge);
+    } else {
+        show(tabBadge);
+        if (number >= 100) {
+            tabBadge.innerHTML = '99+';
+        } else {
+            tabBadge.innerHTML = number.toString();
+        }
+    }
+};
+
+var getArrayDiff = function(a, b) {
+    a = a.sort();
+    b = b.sort();
+
+    var common = 0;
+    for (var i = 0, j = 0; i < a.length && j < b.length; ) {
+        if (a[i] == b[j]) {
+            common++;
+            i++;
+            j++;
+        } else if (a[i] < b[j]) {
+            i++;
+        } else {
+            j++;
+        }
+    }
+    return a.length - common;
 };
